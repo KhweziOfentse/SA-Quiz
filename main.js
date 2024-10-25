@@ -79,7 +79,11 @@ const retryButton = document.getElementById("retry-btn");
 const showAnswerButton = document.getElementById("showAnswer-btn");
 const startBtn = document.getElementById("startBtn");
 const letters = "abcdefghijklmnopqrstuvwxyz";
+
+const element = document.querySelectorAll(".radio");
 let isClicked = false;
+const answers = [];
+let choosenAnswer = "";
 
 let currentQuestion = 0;
 let score = 0;
@@ -150,9 +154,61 @@ function shuffleArray(arr) {
 // });
 
 function displayQuestions() {
-  startBtn.style.display = "none";
-  const question = quizQuestions[currentQuestion];
+  display();
+  
+  if (currentQuestion < quizQuestions.length - 1) {
+    console.log("entered th")
+    
+    // console.log(isClicked)
+    element.forEach((ele) => {
+    
+      ele.addEventListener("change", (event) => {
+        choosenAnswer = ele.value;
+        isClicked = true;
+        // console.log("clicked is true")
+
+
+      });
+    
+    });
+    console.log(isClicked)
+    
+    if(isClicked){
+        currentQuestion++;
+        let vaueExist = answers.includes(choosenAnswer);
+        if(!vaueExist){
+          answers.push(choosenAnswer);
+        }
+        display();
+        
+        console.log(answers)
+        // isClicked = false;
+    }else if(currentQuestion  != 0 && !isClicked){
+        alert("Please select an answer!");
+    }
+    isClicked = false;
+    
+  }
+
+   else {
+    checkAnswers();
+    quizContainer.innerHTML = "";
+    const scoreResult = document.createElement("p");
+    scoreResult.className = "score";
+    scoreResult.innerHTML = `Your score is ${score} out of ${quizQuestions.length}`;
+    quizContainer.appendChild(scoreResult);
+    document.getElementById(`submit`).style.visibility = `hidden`;
+
+   }
+    
+  }
+
+
+  function display(){
+    startBtn.style.display = "none";
   console.log(currentQuestion);
+  const question = quizQuestions[currentQuestion];
+  
 
   const questionElement = document.createElement("div");
   questionElement.className = "question";
@@ -185,34 +241,20 @@ function displayQuestions() {
   quizContainer.innerHTML = "";
   quizContainer.appendChild(questionElement);
   quizContainer.appendChild(optionsElement);
-  if (currentQuestion < quizQuestions.length - 1) {
-    const element = document.querySelectorAll(".radio");
-    element.forEach((ele) => {
-    
-    
-      ele.addEventListener("change", (event) => {
-        isClicked = true;
-        
-      });
-    
-    });
-    
-    // if(isClicked){
-    //     currentQuestion++;
-    // }else{
-    //     alert("Please select an answer!");
-    //     return;
-    // }
-
-    
   }
 
-   else {
-    document.getElementById(`submit`).style.visibility = `hidden`;
 
-   }
+function checkAnswers(){
+    for(let i = 0; i < answers.length; i++){
+      console.log("correct answe is " + quizQuestions[i].answer)
+      console.log("Your answer is " + answers[i])
+      if(answers[i] == quizQuestions[i].answer){
+        score++;
+      }
+      console.log(score)
     
-  } 
+}
+}
 
 
 // "Submit" button checks if the user's answer is correct
