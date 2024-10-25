@@ -197,12 +197,12 @@ function displayQuestions() {
     
     });
     
-    if(isClicked){
-        currentQuestion++;
-    }else{
-        alert("Please select an answer!");
-        return;
-    }
+    // if(isClicked){
+    //     currentQuestion++;
+    // }else{
+    //     alert("Please select an answer!");
+    //     return;
+    // }
 
     
   }
