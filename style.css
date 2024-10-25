@@ -13,6 +13,7 @@ body {
 }
 h1 {
   color: white;
+  font-size: 40px;
 }
 .main-container {
   background: transparent 0.3;
@@ -33,6 +34,7 @@ button {
   border: none;
   cursor: pointer;
   font-weight: bold;
+  margin: 20px;
 }
 button:hover {
   background-color: black;
@@ -43,11 +45,12 @@ button:hover {
 }
 .option {
   font-weight: bolder;
-  font-size: 20px;
+  font-size: 25px;
   color: white;
+  margin: 10px;
 }
 .question {
-  font-size: 25px;
+  font-size: 30px;
   font-weight: 600;
   margin-bottom: 20px;
   color: white;
