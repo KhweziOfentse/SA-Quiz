@@ -150,9 +150,10 @@ function shuffleArray(arr) {
 // });
 
 function displayQuestions() {
+  console.log(currentQuestion);
   startBtn.style.display = "none";
   const question = quizQuestions[currentQuestion];
-  console.log(currentQuestion);
+  
 
   const questionElement = document.createElement("div");
   questionElement.className = "question";
@@ -163,7 +164,7 @@ function displayQuestions() {
   let radio = "";
 
   const shuffledOptions = [...question.options];
-  // shuffleArray(shuffledOptions);
+  shuffleArray(shuffledOptions);
 
   for (let i = 0; i < shuffledOptions.length; i++) {
     const option = document.createElement("label");
@@ -182,16 +183,21 @@ function displayQuestions() {
     optionsElement.appendChild(option);
   }
 
-  quizContainer.innerHTML = "";
+  quizContainer.innerHTML = ""; //clears previous question
   quizContainer.appendChild(questionElement);
   quizContainer.appendChild(optionsElement);
+
+  // submitButton.style.visibility = "visible";
+
+  //checks selcted radio input then moves to the next question
   if (currentQuestion < quizQuestions.length - 1) {
     const element = document.querySelectorAll(".radio");
     element.forEach((ele) => {
     
-    
+
       ele.addEventListener("change", (event) => {
         isClicked = true;
+        currentQuestion++;
         
       });
     
@@ -215,6 +221,41 @@ function displayQuestions() {
   } 
 
 
+  //adds event listener to retry button
+  retry.addEventListener("click", () => {
+    const confirmRetry = confirm("Are you sure you want to try again?");
+  if (confirmRetry) {
+    retryQuiz();
+  }
+  
+  });
+  function retryQuiz() {
+    score = 0;
+    quizContainer.innerHTML = "";
+    resultsContainer.innerHTML = '';
+    let lastQuestionIndex = -1;
+    let randomIndex;
+    do {
+        randomIndex = Math.floor(Math.random() * quizQuestions.length);
+    } while (randomIndex === lastQuestionIndex);
+    
+    displayQuestions();
+    score = 0;
+    quizContainer.style.display = "block";
+    return;
+    
+    document.getElementById("retry-btn").style.visibility = "hidden";
+
+  }
+  
+ 
+
+  
+  
+      
+    
+
+
 // "Submit" button checks if the user's answer is correct
 // submitButton.addEventListener("click", () => {
 // const userAnswer = document.querySelector('');
@@ -236,5 +277,4 @@ function displayQuestions() {
 //     return;
 // }
 
-// displayQuestions();
-// });
+
