@@ -84,10 +84,10 @@ let isClicked = false;
 let currentQuestion = 0;
 let score = 0;
 
-// Dialog
-const dialog = document.querySelector("dialog");
-const showButton = document.querySelector("dialog + button");
-const closeButton = document.querySelector("dialog button");
+// // Dialog
+// const dialog = document.querySelector("dialog");
+// const showButton = document.querySelector("dialog + button");
+// const closeButton = document.querySelector("dialog button");
 
 const names = JSON.parse(localStorage.getItem("player")) || [];
 // const arr = JSON.parse(localStorage.getItem("todolist")) || [];
@@ -214,7 +214,6 @@ function displayQuestions() {
     
   } 
 
-
 // "Submit" button checks if the user's answer is correct
 // submitButton.addEventListener("click", () => {
 // const userAnswer = document.querySelector('');
@@ -238,3 +237,13 @@ function displayQuestions() {
 
 // displayQuestions();
 // });
+
+// function retryQuiz() {
+//     const
+//     let quizQuestions = 0;
+//     currentQuestion = 0;
+//     score = 0;
+//     displayQuestions();
+//     document.getElementById(`submit`).style.visibility = `visible`;
+//   }
+//   retryQuiz();
