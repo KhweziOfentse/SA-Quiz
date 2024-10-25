@@ -78,9 +78,15 @@ const submitButton = document.getElementById("submit-btn");
 const retryButton = document.getElementById("retry-btn");
 const showAnswerButton = document.getElementById("showAnswer-btn");
 const startBtn = document.getElementById("startBtn");
+const letters = "abcdefghijklmnopqrstuvwxyz"
 
 let currentQuestion = 0;
 let score = 0;
+
+// Dialog
+const dialog = document.querySelector("dialog");
+const showButton = document.querySelector("dialog + button");
+const closeButton = document.querySelector("dialog button");
 
 const names = JSON.parse(localStorage.getItem("player")) || [];
 // const arr = JSON.parse(localStorage.getItem("todolist")) || [];
@@ -99,16 +105,110 @@ class Db {
 
 //user press starts button and they have to enter their name
 startBtn.addEventListener("click", () => {
-  const name = prompt("Please enter your name:");
+  let name = prompt("Please enter your name:");
+  let valid = validateName(name);
+  while(name === undefined || name.trim() === "" || !valid){
+    alert("Please enter a valid name!");
+    name = prompt("Please enter your name:");
+    valid = validateName(name);
+  }
   alert(`Good Luck, ${name}`);
+  displayQuestions();
   names.push(name);
-  //  Db.saveToStorage('player', name);
-  console.log(names);
   saveToStorage();
 });
 
 function saveToStorage() {
   localStorage.setItem("player", JSON.stringify(names));
 }
+function validateName(name) {
+    let loweCaseChar = name.toLowerCase();
+    for(let i = 0; i < name.length; i++){
+        if(letters.search(loweCaseChar[i]) == -1){
+            return false
+        }
+    }
+    return true;
+}
+
+
+//shuffles array so everything in the array get a chance to be swapped
+function shuffleArray(arr) {
+    for (let i = arr.length -1 ; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+}
+
+// "Show the dialog" button opens the dialog modally
+const openDialog = showButton.addEventListener("click", () => {
+    dialog.showModal();
+});
+  
+// "Close" button closes the dialog
+const closeDialog = closeButton.addEventListener("click", () => {
+    dialog.close();
+});
+
+function displayQuestions() {
+    startBtn.style.display = "none";
+    const question = quizQuestions[currentQuestion];
+
+    const questionElement = document.createElement("div");
+    questionElement.className  = "question";
+    questionElement.innerHTML = `<p>${question.question}</p>`;
+
+    const optionsElement = document.createElement("div");
+    optionsElement.className = "options";
+
+    const shuffledOptions = [...question.options];
+    shuffleArray(shuffledOptions);
+
+    for (let i = 0; i < shuffledOptions.length; i++) {
+        const option = document.createElement('label');
+        option.className = "option";
+
+        const radio = document.createElement('input');
+        radio.type = "radio";
+        radio.name = "quiz";
+        radio.value = shuffledOptions[i];
+
+        const optionText = document.createTextNode(shuffledOptions[i]);
+
+        option.appendChild(radio);
+        option.appendChild(optionText);
+        optionsElement.appendChild(option);
+    }
+
+    quizContainer.innerHTML = '';
+    quizContainer.appendChild(questionElement);
+    quizContainer.appendChild(optionsElement);
+}
+
+
+// "Submit" button checks if the user's answer is correct
+submitButton.addEventListener("click", () => {
+    const userAnswer = document.querySelector('input[name="quiz"]:checked');
+
+    if (!userAnswer) {
+        alert("Please select an answer.");
+        return;
+    }
+
+    if (userAnswer.value === quizQuestions[currentQuestion].answer) {
+        score++;
+    }
+
+    currentQuestion++;
+
+    if (currentQuestion === quizQuestions.length) {
+        // showResults();
+        return;
+    }
+
+    displayQuestions();
+});
+
+
 
 
