@@ -141,18 +141,20 @@ function shuffleArray(arr) {
 }
 
 // "Show the dialog" button opens the dialog modally
-const openDialog = showButton.addEventListener("click", () => {
-    dialog.showModal();
-});
+// const openDialog = showButton.addEventListener("click", () => {
+//     dialog.showModal();
+// });
   
 // "Close" button closes the dialog
-const closeDialog = closeButton.addEventListener("click", () => {
-    dialog.close();
-});
+// const closeDialog = closeButton.addEventListener("click", () => {
+//     dialog.close();
+// });
 
 function displayQuestions() {
     startBtn.style.display = "none";
     const question = quizQuestions[currentQuestion];
+    console.log(currentQuestion);
+    
 
     const questionElement = document.createElement("div");
     questionElement.className  = "question";
@@ -183,31 +185,40 @@ function displayQuestions() {
     quizContainer.innerHTML = '';
     quizContainer.appendChild(questionElement);
     quizContainer.appendChild(optionsElement);
+    if(currentQuestion < quizQuestions.length-1) {
+        currentQuestion++;
+    } else {
+        submitButton.style.display = "none";
+    }
 }
 
 
 // "Submit" button checks if the user's answer is correct
-submitButton.addEventListener("click", () => {
-    const userAnswer = document.querySelector('input[name="quiz"]:checked');
+// submitButton.addEventListener("click", () => {
+    // const userAnswer = document.querySelector('');
+    // console.log("clicked submit button");
+    // currentQuestion++;
+    // displayQuestions();
 
-    if (!userAnswer) {
-        alert("Please select an answer.");
-        return;
-    }
 
-    if (userAnswer.value === quizQuestions[currentQuestion].answer) {
-        score++;
-    }
+    // if (!userAnswer) {
+    //     alert("Please select an answer.");
+    //     return;
+    // }
 
-    currentQuestion++;
+    // if (userAnswer.value === quizQuestions[currentQuestion].answer) {
+    //     score++;
+    // }
 
-    if (currentQuestion === quizQuestions.length) {
-        // showResults();
-        return;
-    }
+    
 
-    displayQuestions();
-});
+    // if (currentQuestion === quizQuestions.length) {
+    //     // showResults();
+    //     return;
+    // }
+
+    // displayQuestions();
+// });
 
 
 
