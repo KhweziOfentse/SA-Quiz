@@ -1,65 +1,4 @@
-const quizQuestions = [
-  {
-    question: " Which city is also known as Jacaranda city? ",
-    options: ["Joburg", "Cape Town", "Pretoria"],
-    answer: "Pretoria",
-  },
-
-  {
-    question: "What's the slang used to say “HI” ",
-    options: ["Sho", "Lekker", "Dintshang"],
-    answer: "Sho",
-  },
-
-  {
-    question: " What is the other name for FNB Stadium? ",
-    options: ["Soccer City", "Mandela Stadium", "Kaizer Chiefs Stadium"],
-    answer: "Soccer City",
-  },
-
-  {
-    question: " What is the national flower? ",
-    options: ["Rose", "Protea", "Lavender"],
-    answer: "Protea",
-  },
-
-  {
-    question: "Who was Nelson Mandela's last wife?",
-    options: ["Winnie Mandela", "Graca Machel", "Evelyn Mase"],
-    answer: "Graca Machel",
-  },
-
-  {
-    question: " Which political party is the loudest in Parliament? ",
-    options: ["ANC", "DA", "EFF"],
-    answer: "EFF",
-  },
-
-  {
-    question: " Tallest Mountain in South Africa? ",
-    options: ["Table Mountain", "Mafadi", "Kilimanjaro"],
-    answer: "Mafadi",
-  },
-
-  {
-    question:
-      " Nickname for the popular South African rugby player “Tendai Mtawarira” ",
-    options: ["Elizabeth", "Beast", "Faf"],
-    answer: "Beast",
-  },
-
-  {
-    question: " Who is popularly known as uMsholozi? ",
-    options: ["Jacob Zuma", "Nelson Mandela", "Cryil Ramaphosa"],
-    answer: "Jacob Zuma",
-  },
-
-  {
-    question: "Who is affectionally know as Cupcake? ",
-    options: ["Babies", "Cyril Ramaphosa", "Siya Kolisi"],
-    answer: "Cyril Ramaphosa",
-  },
-];
+const quizQuestions = [];
 
 // {
 //     question: 'Which is the largest ocean on Earth?',
@@ -84,13 +23,7 @@ let isClicked = false;
 let currentQuestion = 0;
 let score = 0;
 
-// // Dialog
-// const dialog = document.querySelector("dialog");
-// const showButton = document.querySelector("dialog + button");
-// const closeButton = document.querySelector("dialog button");
-
 const names = JSON.parse(localStorage.getItem("player")) || [];
-// const arr = JSON.parse(localStorage.getItem("todolist")) || [];
 
 // this function saves the names array to the local storage
 class Db {
@@ -139,18 +72,11 @@ function shuffleArray(arr) {
   }
 }
 
-// "Show the dialog" button opens the dialog modally
-// const openDialog = showButton.addEventListener("click", () => {
-//     dialog.showModal();
-// });
+displayQuestions();
 
-// "Close" button closes the dialog
-// const closeDialog = closeButton.addEventListener("click", () => {
-//     dialog.close();
-// });
 
 function displayQuestions() {
-  startBtn.style.display = "none";
+  // startBtn.style.display = "none";
   const question = quizQuestions[currentQuestion];
   console.log(currentQuestion);
 
@@ -238,12 +164,30 @@ function displayQuestions() {
 // displayQuestions();
 // });
 
-// function retryQuiz() {
-//     const
-//     let quizQuestions = 0;
-//     currentQuestion = 0;
-//     score = 0;
-//     displayQuestions();
-//     document.getElementById(`submit`).style.visibility = `visible`;
-//   }
-//   retryQuiz();
+retry.addEventListener("click", () => {
+  const confirmRetry = confirm("Are you sure you want to try again?");
+if (confirmRetry) {
+  retryQuiz();
+}
+
+});
+
+function retryQuiz() {
+  score = 0;
+  quizContainer.innerHTML = "";
+  resultsContainer.innerHTML = '';
+  let lastQuestionIndex = -1;
+  let randomIndex;
+  do {
+      randomIndex = Math.floor(Math.random() * quizQuestions.length);
+  } while (randomIndex === lastQuestionIndex);
+  
+  displayQuestions();
+  score = 0;
+  quizContainer.style.display = "block";
+  return;
+  
+  document.getElementById("retry-btn").style.visibility = "hidden";
+    document.getElementById(`submit`).style.visibility = `visible`;
+  }
+  retryQuiz();
