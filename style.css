@@ -40,9 +40,7 @@ button:hover {
   background-color: black;
   color: white;
 }
-.hidden {
-  display: none;
-}
+
 .option {
   font-weight: bolder;
   font-size: 25px;

@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="main-container">
-        <h1>🇿🇦 SA QUIZ</h1> 
-        <div id="quiz"></div>
-        <button id="startBtn">START</button>
-        <dialog>
-            <h2 id="dialogTitle"></h2>
-            <p id="dialogContent"></p>
-            <button id="dialogYesBtn">Yes</button>
-            <button id="dialogNoBtn">No</button>
-        </dialog>
-        <div id="result" class="result"></div>
-        <button id="submit" onclick="displayQuestions()" class="submit-btn hidden">Submit</button>
-        <button id="retry" class="retry-btn hidden">Play Again</button>
-        <button id="showAnswer" class="showAnswer-btn hidden">
-            Show Answer
-        </button>
-      </div>
-      <script src="main.js"></script>
-</body>
-</html> 
-
+      <h1>🇿🇦 SA QUIZ</h1>
+      <div id="quiz"></div>
+      <div id="result" class="result"></div>
+      <button type="button" id="start-btn">START</button>
+      <!-- <dialog>
+        <h2 id="dialogTitle"></h2>
+        <p id="dialogContent"></p>
+        <button id="dialogYesBtn">Yes</button>
+        <button id="dialogNoBtn">No</button>
+        onclick = "displayQuestions()"
+      </dialog> -->
+      <button type="button" id="submit-btn" class="submit-btn hidden">
+        Submit
+      </button>
+      <button type="button" id="retry-btn" class="retry-btn hidden">
+        Play Again
+      </button>
+      <button type="button" id="showAnswer-btn" class="showAnswer-btn hidden">
+        Show Answer
+      </button>
+    </div>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
 
 <!-- can change when we pick a name -->
-
-
-
-
