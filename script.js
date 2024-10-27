@@ -40,19 +40,24 @@ function shuffleArray(arr) {
 }
 
 function startButton() {
-  let name = prompt("Please enter your name:");
-  let valid = validateName(name);
-  while (name === undefined || name.trim() === "" || !valid) {
-    alert("Please enter a valid name!");
-    name = prompt("Please enter your name:");
-    valid = validateName(name);
-  }
-  alert(`Good Luck, ${name}`);
-  displayQuestions();
-  names.push(name);
-  Db.saveToStorage("player", names);
+  startBtn.addEventListener("click", () => {
+    let name = prompt("Please enter your name:");
+    let valid = validateName(name);
+    while (name === undefined || name.trim() === "" || !valid) {
+      alert("Please enter a valid name!");
+      name = prompt("Please enter your name:");
+      valid = validateName(name);
+      return;
+    }
+    alert(`Good Luck, ${name}`);
+    displayQuestions();
+    names.push(name);
+    Db.saveToStorage("player", names);
+  })
+  
 }
 
+startButton();
 // Display the current question and options
 function displayQuestions() {
   startBtn.style.display = "none";
@@ -158,20 +163,20 @@ function showAnswer() {
   `;
 }
 
-// Add event listeners after the DOM content has loaded
-document.addEventListener("DOMContentLoaded", function () {
-  if (startBtn) {
-    startBtn.addEventListener("click", startButton);
-  }
-  if (submitButton) {
-    submitButton.addEventListener("click", checkAnswer);
-  }
-  if (retryButton) {
-    retryButton.addEventListener("click", retryQuiz);
-  }
-  if (showAnswerButton) {
-    showAnswerButton.addEventListener("click", showAnswer);
-  }
+// // Add event listeners after the DOM content has loaded
+// document.addEventListener("DOMContentLoaded", function () {
+//   if (startBtn) {
+//     startBtn.addEventListener("click", startButton());
+//   }
+//   if (submitButton) {
+//     submitButton.addEventListener("click", checkAnswer);
+//   }
+//   if (retryButton) {
+//     retryButton.addEventListener("click", retryQuiz);
+//   }
+//   if (showAnswerButton) {
+//     showAnswerButton.addEventListener("click", showAnswer);
+//   }
 
-  displayQuestions(); // Start displaying questions if needed
-});
+//   displayQuestions(); // Start displaying questions if needed
+// });
