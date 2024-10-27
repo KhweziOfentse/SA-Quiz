@@ -1,3 +1,5 @@
+export { quizQuestions, validateName } from 'functions.js';
+
 const quizQuestions = [];
 
 // {
@@ -14,8 +16,8 @@ const quizQuestions = [];
 const quizContainer = document.getElementById("quiz");
 const resultsContainer = document.getElementById("results");
 const submitButton = document.getElementById("submit-btn");
-const retryButton = document.getElementById("retry-btn");
-const showAnswerButton = document.getElementById("showAnswer-btn");
+const retryButton = document.getElementById("retry");
+const showAnswerButton = document.getElementById("showAnswer");
 const startBtn = document.getElementById("startBtn");
 const letters = "abcdefghijklmnopqrstuvwxyz";
 let isClicked = false;
@@ -54,29 +56,23 @@ startBtn.addEventListener("click", () => {
 function saveToStorage() {
   localStorage.setItem("player", JSON.stringify(names));
 }
-function validateName(name) {
-  let loweCaseChar = name.toLowerCase();
-  for (let i = 0; i < name.length; i++) {
-    if (letters.search(loweCaseChar[i]) == -1) {
-      return false;
-    }
-  }
-  return true;
-}
+
 
 //shuffles array so everything in the array get a chance to be swapped
 function shuffleArray(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-}
-
-displayQuestions();
-
+  };
+};
+// displayQuestions(); //shows questions
 
 function displayQuestions() {
+  document.getElementById("startBtn").style.visibiility = "hidden";
   // startBtn.style.display = "none";
+
+  // document.getElementById("retry-btn").style.visibility = "hidden";
+  //   document.getElementById(`submit`).style.visibility = `visible`;
   const question = quizQuestions[currentQuestion];
   console.log(currentQuestion);
 
@@ -136,9 +132,9 @@ function displayQuestions() {
    else {
     document.getElementById(`submit`).style.visibility = `hidden`;
 
-   }
+   };
     
-  } 
+  };
 
 // "Submit" button checks if the user's answer is correct
 // submitButton.addEventListener("click", () => {
@@ -168,7 +164,7 @@ retry.addEventListener("click", () => {
   const confirmRetry = confirm("Are you sure you want to try again?");
 if (confirmRetry) {
   retryQuiz();
-}
+};
 
 });
 
@@ -189,5 +185,5 @@ function retryQuiz() {
   
   document.getElementById("retry-btn").style.visibility = "hidden";
     document.getElementById(`submit`).style.visibility = `visible`;
-  }
+  };
   retryQuiz();

@@ -61,4 +61,4 @@ const quizQuestions = [
     },
   ];
 
-  export { quizQuestions }
+  export { quizQuestions, validateName}
