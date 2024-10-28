@@ -18,6 +18,7 @@ const retryButton = document.getElementById("retry");
 const showAnswerButton = document.getElementById("showAnswer");
 const startBtn = document.getElementById("startBtn");
 const refreshButton = document.getElementById("refresh");
+resultsContainer.className = "results-container";
 
 let isClicked = false;
 let retryButtonShowing = true;

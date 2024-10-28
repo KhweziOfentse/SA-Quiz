@@ -70,3 +70,6 @@ img {
 .score {
   color: red;
 }
+.results-container strong{
+  color:rgb(18, 142, 214)
+}
