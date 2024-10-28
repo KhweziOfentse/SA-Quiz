@@ -21,6 +21,11 @@ const startBtn = document.getElementById("startBtn");
 let isClicked = false;
 let retryButtonShowing = true;
 
+const Player = {
+  name: "",
+  score: 0,
+};
+
 let chosenAnswer = "";
 
 let currentQuestion = 0;
@@ -55,7 +60,8 @@ startBtn.addEventListener("click", () => {
   }
   alert(`Good Luck, ${name}`);
   displayQuestions();
-  names.push(name);
+  Player.name = name;
+  names.push(Player);
   savePlayerToStorage(names);
   started = false;
 });
@@ -106,6 +112,8 @@ function callRadioSector() {
     quizContainer.innerHTML = "";
     const scoreResult = document.createElement("p");
     scoreResult.className = "score";
+    Player.score = score;
+    savePlayerToStorage(names);
     scoreResult.innerHTML = `Your score is ${score} out of ${quizQuestions.length}`;
     quizContainer.appendChild(scoreResult);
     showAnswerButton.style.visibility = "visible";

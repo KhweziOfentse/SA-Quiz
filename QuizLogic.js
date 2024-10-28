@@ -65,12 +65,6 @@ const letters = "abcdefghijklmnopqrstuvwxyz";
 const answers = [];
 let score = 0;
 
-const Player = {
-  name: "",
-  score: 0,
-  retryScore: 0
-
-};
 
 
 function resetScore() {
