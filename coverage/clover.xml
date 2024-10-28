@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1730095029316" clover="3.2.0">
-  <project timestamp="1730095029316" name="All files">
+<coverage generated="1730106645351" clover="3.2.0">
+  <project timestamp="1730106645351" name="All files">
     <metrics statements="33" coveredstatements="33" conditionals="15" coveredconditionals="14" methods="6" coveredmethods="6" elements="54" coveredelements="53" complexity="0" loc="33" ncloc="33" packages="1" files="1" classes="1"/>
-    <file name="QuizLogic.js" path="/Users/dam121/SA-Quiz/QuizLogic.js">
+    <file name="QuizLogic.js" path="/Users/damacm187/Desktop/quiz/SA-Quiz/QuizLogic.js">
       <metrics statements="33" coveredstatements="33" conditionals="15" coveredconditionals="14" methods="6" coveredmethods="6"/>
       <line num="1" count="1" type="stmt"/>
       <line num="64" count="1" type="stmt"/>

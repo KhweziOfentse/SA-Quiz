@@ -17,6 +17,7 @@ const submitButton = document.getElementById("submit-btn");
 const retryButton = document.getElementById("retry");
 const showAnswerButton = document.getElementById("showAnswer");
 const startBtn = document.getElementById("startBtn");
+const refreshButton = document.getElementById("refresh");
 
 let isClicked = false;
 let retryButtonShowing = true;
@@ -184,7 +185,7 @@ retry.addEventListener("click", () => {
 
 function retryQuiz() {
   retry_state = true;
-  retryButtonShowing = false;
+  // retryButtonShowing = false;
   resetScore();
   answers.length = 0;
   quizContainer.innerHTML = "";
@@ -241,6 +242,13 @@ function showAnswer() {
     ${incorrectAnswersHtml}
   `;
   retryButton.style.visibility = "hidden";
+
+  refreshButton.addEventListener("click", refreshPage);
+}
+
+function refreshPage() {
+  refreshButton.style.cursor = "pointer";
+  location.reload();
 }
 
 
