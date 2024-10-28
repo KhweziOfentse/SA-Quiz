@@ -14,6 +14,7 @@ body {
 h1 {
   color: white;
   font-size: 40px;
+  margin: 0;
 }
 .main-container {
   background: transparent 0.3;
@@ -41,6 +42,9 @@ button:hover {
   color: white;
 }
 
+
+
+
 .option {
   font-weight: bolder;
   font-size: 25px;
@@ -52,4 +56,8 @@ button:hover {
   font-weight: 600;
   margin-bottom: 20px;
   color: white;
+}
+img {
+  width: 45px;
+  height: 45px;
 }
