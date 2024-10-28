@@ -9,12 +9,31 @@ import {
   shuffleArray,
   namePrompt,
   resetScore,
+  AddToAnswers,
 } from "../QuizLogic.js";
 
+
+let currentQuestion;
 // Reset score and answers before each test
 beforeEach(() => {
   resetScore();
   answers.length = 0;
+  currentQuestion = 0;
+});
+
+
+describe("Testing array", () => {
+   test("quizQuesstions should be defined", () => {
+     expect(quizQuestions).toBeDefined();
+   });
+
+  test("quizQuesstions should not be empty", () => {
+    expect(quizQuestions.length).toBeGreaterThan(0);
+  });
+
+  test("array should be defined", () => {
+    expect(Array.isArray(quizQuestions)).toBe(true);
+  });
 });
 
 describe("checkAnswers", () => {
@@ -38,6 +57,14 @@ describe("checkAnswers", () => {
 });
 
 describe("validateName", () => {
+
+
+  it("should be defined", () => {
+    expect(validateName).toBeDefined();
+  });
+  it("should be a function", () => {
+    expect(typeof validateName).toBe("function");
+  });
   test("should return true for valid names", () => {
     expect(validateName("John")).toBe(true);
     expect(validateName("jane")).toBe(true);
@@ -60,6 +87,13 @@ describe("validateName", () => {
 });
 
 describe("shuffleArray", () => {
+
+   it("should be defined", () => {
+     expect(shuffleArray).toBeDefined();
+   });
+   it("should be a function", () => {
+     expect(typeof shuffleArray).toBe("function");
+   });
   test("should shuffle the array", () => {
     const originalArray = [1, 2, 3, 4, 5];
     const arrayToShuffle = [...originalArray];
@@ -83,6 +117,13 @@ describe("namePrompt", () => {
     global.prompt = jest.fn();
     global.alert = jest.fn();
   });
+
+   it("should be defined", () => {
+     expect(namePrompt).toBeDefined();
+   });
+   it("should be a function", () => {
+     expect(typeof namePrompt).toBe("function");
+   });
 
   test("should return valid name when entered correctly", () => {
     prompt.mockReturnValueOnce("Alice");
@@ -108,3 +149,43 @@ describe("namePrompt", () => {
       expect(result).toBeUndefined();
     });
 });
+
+
+describe("AddToAnswers", () => {
+
+   it("should be defined", () => {
+     expect(AddToAnswers).toBeDefined();
+   });
+   it("should be a function", () => {
+     expect(typeof AddToAnswers).toBe("function");
+   });
+  test("adds a new answer for the first question", () => {
+    const result = AddToAnswers("Pretoria", 0);
+    expect(answers[0]).toBe("Pretoria");
+    expect(result).toBe(false);
+  });
+
+  test("updates the existing answer for the first question", () => {
+    answers[0] = "Cape Town";
+    const result = AddToAnswers("Pretoria", 0);
+    expect(answers[0]).toBe("Pretoria");
+    expect(result).toBe(true);
+  });
+
+  test("adds a new answer for the second question", () => {
+    const result = AddToAnswers("Sho", 1);
+    expect(answers[1]).toBe("Sho");
+    expect(result).toBe(false);
+  });
+
+  test("updates the existing answer for the second question", () => {
+    answers[1] = "Lekker";
+    const result = AddToAnswers("Sho", 1);
+    expect(answers[1]).toBe("Sho");
+    expect(result).toBe(true);
+  });
+});
+
+
+
+

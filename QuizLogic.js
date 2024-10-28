@@ -65,19 +65,27 @@ const letters = "abcdefghijklmnopqrstuvwxyz";
 const answers = [];
 let score = 0;
 
+const Player = {
+  name: "",
+  score: 0,
+  retryScore: 0
+
+};
+
 
 function resetScore() {
   score = 0;
 }
 
 function checkAnswers() {
-    for (let i = 0; i < answers.length; i++) {
-    if (!quizQuestions[i]) {
-      continue;
+
+  for (let i = 0; i < answers.length; i++) {
+    if (quizQuestions[i].answer) {
+      if (answers[i] == quizQuestions[i].answer) {
+        score++;
+      }
     }
-    if (answers[i] == quizQuestions[i].answer) {
-      score++;
-    }
+    
   }
 }
 
@@ -99,6 +107,7 @@ function shuffleArray(arr) {
     const j = Math.floor(Math.random() * (i + 1));
     [arr[i], arr[j]] = [arr[j], arr[i]];
   }
+  // console.log(arr);
 }
 
 function namePrompt() {
@@ -115,4 +124,16 @@ function namePrompt() {
     return name;
 }
 
-export { checkAnswers, quizQuestions, validateName,score,answers, shuffleArray, namePrompt,resetScore };
+function AddToAnswers(selectedAnswer,currentQuestion) {
+  const currentIndex = currentQuestion;
+
+  if (answers[currentIndex] !== undefined) {
+    answers[currentIndex] = selectedAnswer;
+    return true;
+  } else {
+    answers[currentIndex] = selectedAnswer;
+    return false;
+  }
+}
+
+export { checkAnswers, quizQuestions, validateName,score,answers, shuffleArray, namePrompt,resetScore,AddToAnswers };

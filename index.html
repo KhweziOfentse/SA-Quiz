@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
   </head>
   <body>
@@ -10,16 +11,11 @@
       <h1>SA QUIZ</h1>
       <div id="quiz"></div>
       <button id="startBtn">START</button>
-      <dialog>
-        <h2 id="dialogTitle"></h2>
-        <p id="dialogContent"></p>
-        <button id="dialogYesBtn">Yes</button>
-        <button id="dialogNoBtn">No</button>
-      </dialog>
+
       <div id="result" class="result"></div>
-      
+
       <button
-        id="submit"
+        id="submit-btn"
         onclick="displayQuestions()"
         class="submit-btn hidden"
       >
@@ -32,4 +28,3 @@
   </body>
 </html>
 
-<!-- can change when we pick a name -->
