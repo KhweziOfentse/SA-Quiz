@@ -13,7 +13,7 @@ const quizQuestions = [
 
   {
     question: " What is the other name for FNB Stadium? ",
-    options: ["Soccer City", "Mandela Stadium", "Kaizer Chiefs Stadium"],
+    options: ["Soccer City", "Mandela Stadium", "Chiefs Stadium"],
     answer: "Soccer City",
   },
 
