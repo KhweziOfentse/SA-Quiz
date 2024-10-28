@@ -8,19 +8,14 @@
   </head>
   <body>
     <div class="main-container">
-      <img src="images/south-africa.png" alt="" />
       <h1>SA QUIZ</h1>
       <div id="quiz"></div>
       <button id="startBtn">START</button>
-      <dialog>
-        <h2 id="dialogTitle"></h2>
-        <p id="dialogContent"></p>
-        <button id="dialogYesBtn">Yes</button>
-        <button id="dialogNoBtn">No</button>
-      </dialog>
+
       <div id="result" class="result"></div>
+
       <button
-        id="submit"
+        id="submit-btn"
         onclick="displayQuestions()"
         class="submit-btn hidden"
       >
@@ -29,6 +24,7 @@
       <button id="retry" class="retry-btn hidden">Play Again</button>
       <button id="showAnswer" class="showAnswer-btn hidden">Show Answer</button>
     </div>
-    <script src="main.js"></script>
+    <script type="module" src="main.js"></script>
   </body>
 </html>
+
